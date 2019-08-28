@@ -4,13 +4,38 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2019/08/27/hello-world/"/>
-      <url>/2019/08/27/hello-world/</url>
+      <title>nginx解决跨域问题</title>
+      <link href="/2019/08/28/nginx/"/>
+      <url>/2019/08/28/nginx/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h2 id="nginx解决跨域问题"><a href="#nginx解决跨域问题" class="headerlink" title="nginx解决跨域问题"></a>nginx解决跨域问题</h2><p>作为前端的小白们，遇到跨域是不是很头疼的事情，在这里我介绍两种常用的方法</p><h3 id="方法一-nginx反向代理"><a href="#方法一-nginx反向代理" class="headerlink" title="方法一 nginx反向代理"></a>方法一 nginx反向代理</h3><p><img src="https://img-blog.csdnimg.cn/20190311111551133.png" alt=""></p><ol><li>首先你把下载nginx  传送门 <a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx</a></li><li>打开命令工具 开启nginx命令：start nginx</li><li>关闭nginx命令：./nginx.exe -s stop</li><li>然后打开conf-&gt;nginx.conf 会看到下面的配置<br><img src="https://img-blog.csdnimg.cn/201903111110196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTUyODU4Nw==,size_16,color_FFFFFF,t_70" alt=""></li></ol><h3 id="方法二-cors"><a href="#方法二-cors" class="headerlink" title="方法二 cors"></a>方法二 cors</h3><ol><li><p>CORS背后的基本思想是使用自定义的HTTP头部允许浏览器和服务器相互了解对方，从而决定请求或响应成功与否</p></li><li><p>后台配置请求头 把前端的ip放在白名单中  这里用的是node.js</p><p><img src="https://img-blog.csdnimg.cn/20190311112141674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTUyODU4Nw==,size_16,color_FFFFFF,t_70" alt=""></p><p>这里记录一下前端如何写</p><p><img src="https://img-blog.csdnimg.cn/20190311112315973.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTUyODU4Nw==,size_16,color_FFFFFF,t_70" alt=""></p></li></ol><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vue中Observer问题</title>
+      <link href="/2019/08/28/vue/"/>
+      <url>/2019/08/28/vue/</url>
+      
+        <content type="html"><![CDATA[<h2 id="vue-中-ob-Observer-问题"><a href="#vue-中-ob-Observer-问题" class="headerlink" title="vue 中 [ob: Observer]问题"></a>vue 中 [<strong>ob</strong>: Observer]问题</h2><p>​​​​<br><img src="/images/vue.png" alt="截图"></p><p>– <strong>ob</strong>: Observer这些数据是vue这个框架对数据设置的监控器，一般都是不可枚举的。<br>首先我们要把这个数据获取原始数据 <strong>JSON.stringify([data])</strong>   变成字符串</p><p>然后在用<strong>JSON.parse()</strong>将数据转换为 JavaScript 对象<br><img src="https://img-blog.csdnimg.cn/20190313104254672.png" alt=""></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
       
     </entry>
     
