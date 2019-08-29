@@ -588,7 +588,7 @@ webpage(right)->website(right)->application</code></pre>
 </ul>
 </blockquote>
 <p>我们手头上的这些网页，如果想要成为一个网站，首先要完成的第一件事就是有一台公共的 Web 服务器，把这一系列的页面放到这台 Web 服务器上，让用户可以通过服务器的地址访问到这些网页。</p>
-<p><img src="media/web-server.png" alt="Web Server"></p>
+<p><img src="/images/web-server.png" alt="Web Server"></p>
 <blockquote>
 <p>提问：为什么不放在我们自己电脑上呢？</p>
 </blockquote>
@@ -621,15 +621,15 @@ $ httpd.exe -k install -n "Apache"
 ## 如果需要卸载 Apache，可以执行以下命令
 $ httpd.exe -k uninstall -n "Apache"</code></pre>
 <p>执行安装命令过后会报一个错，原因是默认的配置文件有问题，需要先调整一下配置文件 <code>conf/httpd.conf</code>，才能正常启动服务。</p>
-<p><img src="media/1505988989079.png" alt="1505988989079"></p>
+<p><img src="/images/1505988989079.png" alt="1505988989079"></p>
 <p>找到 Apache 解压目录中的 conf 目录下的 httpd.conf 文件，定位到 37 行，将 <code>c:/Apache24</code> 改为解压目录，我这里解压到路径是 <code>C:/Develop/apache</code>，所以我这里修改</p>
-<p><img src="media/1505995465005.png" alt="1505995465005"></p>
+<p><img src="/images/1505995465005.png" alt="1505995465005"></p>
 <p>修改完以后，执行以下命令重新测试配置文件是否通过。</p>
 <pre class=" language-shell"><code class="language-shell">$ httpd.exe -t</code></pre>
 <p>这里任然报错：</p>
-<p><img src="media/1505995651671.png" alt="1505995651671"></p>
+<p><img src="/images/1505995651671.png" alt="1505995651671"></p>
 <p>通过错误信息得知，这里是因为另外一个地方配置的目录不存在导致的，所以接着调整 246 行的 <code>DocumentRoot</code> 选项：</p>
-<p><img src="media/1505996335305.png" alt="1505996335305"></p>
+<p><img src="/images/1505996335305.png" alt="1505996335305"></p>
 <p>随即，我们发现这个配置文件中有很多默认配置选项中的路径都是 <code>c:/Apache24</code>，所以我们批量都修改为我们解压的目录路径。</p>
 <p>然后重新执行 <code>httpd.exe -t</code> 测试配置文件，这时候应该提示 <code>Syntax OK</code>。</p>
 <blockquote>
@@ -643,7 +643,7 @@ $ httpd.exe -k restart -n "Apache"
 ## 停止 Apache 服务
 $ httpd.exe -k stop -n "Apache"</code></pre>
 <p>回到浏览器中，地址栏输入：<a href="http://localhost/，回车访问，这时正常应该看到" target="_blank" rel="noopener">http://localhost/，回车访问，这时正常应该看到</a> <code>It works!</code></p>
-<p><img src="media/1505997349857.png" alt="1505997349857"></p>
+<p><img src="/images/1505997349857.png" alt="1505997349857"></p>
 <h6 id="提供-Web-服务"><a href="#提供-Web-服务" class="headerlink" title="提供 Web 服务"></a>提供 Web 服务</h6><p>启动 Apache，让别人可以使用你机器上安装的 Apache 提供的 Web 服务，访问你机器上的网站。<strong>这种情况下你的机器就是服务器，别人的机器就是客户端</strong>。</p>
 <p><strong>注意</strong>：</p>
 <ul>
@@ -661,10 +661,10 @@ $ httpd.exe -k stop -n "Apache"</code></pre>
 <p>127.0.0.1 是本地回环地址</p>
 <p>######## 单个网络情况</p>
 <p>在单个局域网下，结构非常简单，就是我们所连接的网络设备（网关）给我们分配了一个地址，在<strong>这个范围之内</strong>我们都可以通过这个地址找到我们的这个设备。</p>
-<p><img src="media/single-network.png" alt="单个局域网情况"></p>
+<p><img src="/images/single-network.png" alt="单个局域网情况"></p>
 <p>######## 多个网络情况</p>
 <p>但是当一个设备同时处于多个网络下（比如同时连接了有线网卡和无线网卡），就会变得稍微复杂一点：</p>
-<p><img src="media/multiple-network.png" alt="multiple-network"></p>
+<p><img src="/images/multiple-network.png" alt="multiple-network"></p>
 <blockquote>
 <p>例如：</p>
 <p>小明这个同学同时报名了两个课程，在 A 班级小明是班长，所有 A 班级的同学都管他叫班长（叫班长就能找到他）。而在 B 班级小明是课代表，所有 B 班的同学都管他叫课代表（叫课代表就能找到他）。</p>
@@ -693,7 +693,7 @@ $ httpd.exe -k stop -n "Apache"</code></pre>
 <p>http 默认的端口 80</p>
 <p>https 默认的端口是 443</p>
 </blockquote>
-<h4 id="请求响应流程"><a href="#请求响应流程" class="headerlink" title="请求响应流程"></a>请求响应流程</h4><p><img src="media/http-req-res.png" alt="HTTP请求和响应"></p>
+<h4 id="请求响应流程"><a href="#请求响应流程" class="headerlink" title="请求响应流程"></a>请求响应流程</h4><p><img src="/images/http-req-res.png" alt="HTTP请求和响应"></p>
 <ol>
 <li>用户打开浏览器</li>
 <li>地址栏输入我们需要访问的网站网址（URL）</li>
@@ -708,7 +708,7 @@ $ httpd.exe -k stop -n "Apache"</code></pre>
 <p>配置文件中行首的 <code>##</code> 指的是注释</p>
 </blockquote>
 <h6 id="监听端口"><a href="#监听端口" class="headerlink" title="监听端口"></a>监听端口</h6><p><strong>监听端口</strong>可以随意修改为任意一个未被其他程序监听的端口，可以通过设置配置文件 <code>httpd.conf</code> 中的 <code>Listen</code> 指令后面的数字修改。</p>
-<p><img src="media/1506132097583.png" alt="1506132097583"></p>
+<p><img src="/images/1506132097583.png" alt="1506132097583"></p>
 <h6 id="网站根目录"><a href="#网站根目录" class="headerlink" title="网站根目录"></a>网站根目录</h6><blockquote>
 <p><strong>网站根目录</strong>就是存放我们网站文件的最顶层目录，通常 URL 中域名后面的第一个斜线对应（映射）的就是网站根目录。</p>
 <p><strong>注</strong>：动态网站情况会比较特殊，需要单独考虑，不一定是这个规则。</p>
@@ -716,24 +716,24 @@ $ httpd.exe -k stop -n "Apache"</code></pre>
 </blockquote>
 <p>默认 Apache 的网站根目录是安装目录中的 <code>htdocs</code> 文件夹，为了方便对网站文件的管理，一般我们会将其设置在一个自定义目录中（如果你不介意其实也无所谓）。</p>
 <p>如果需要设置网站根目录，可以通过修改配置文件 <code>httpd.conf</code> 中的网站根目录选项切换。</p>
-<p><img src="media/1505998898900.png" alt="1505998898900"></p>
+<p><img src="/images/1505998898900.png" alt="1505998898900"></p>
 <h6 id="默认文档"><a href="#默认文档" class="headerlink" title="默认文档"></a>默认文档</h6><blockquote>
 <p>当客户端访问的是一个目录而不是具体文件时，服务端默认返回这个目录下的某个文档（文件），这个文档就称之为<strong>默认文档</strong>。</p>
 </blockquote>
 <p>配置文件 <code>httpd.conf</code> 的 280 行的 <code>DirectoryIndex</code>，默认文档可以配置多个（有前到后依次去找，找到为止，如果没找到任何一个则启用目录浏览）：</p>
-<p><img src="media/1506132675132.png" alt="1506132675132"></p>
+<p><img src="/images/1506132675132.png" alt="1506132675132"></p>
 <h6 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h6><p>如果一台机器上只有一个网站的话，没有任何问题，但是如果想要在一台机器上部署多个站点，就必须通过配置虚拟主机的方式解决。</p>
 <blockquote>
 <p>由于后期对虚拟主机的配置操作非常常见，所以我们一般将虚拟主机的配置单独放到一个配置文件中，然后在主配置文件中引入，避免破坏主配置文件中的其他配置。</p>
 <p><code>Include conf/extra/httpd-vhosts.conf</code> 配置的作用就将另外一个配置文件引入（使其生效）</p>
 </blockquote>
 <p>具体的操作方式就是在主配置文件 <code>httpd.conf</code> 的 505 行取消注释：</p>
-<p><img src="media/1505999461533.png" alt="1505999461533"></p>
+<p><img src="/images/1505999461533.png" alt="1505999461533"></p>
 <p>然后找到 Apache 的虚拟主机配置文件，添加一个如下的虚拟主机配置节点，然后重新启动 Apache。</p>
 <blockquote>
 <p>这个文件中有两个默认的示例配置，可以注释掉</p>
 </blockquote>
-<p><img src="media/1506136421939.png" alt="1506136421939"></p>
+<p><img src="/images/1506136421939.png" alt="1506136421939"></p>
 <p>如果真的要使用 <code>baixiu.com</code> 这个域名的话，就只能通过修改 <code>hosts</code> 文件达到目的，原因很简单：这个域名不是我们自己的，我们没有办法修改这个域名在公网上的 DNS。</p>
 <blockquote>
 <p>注意：</p>
@@ -741,14 +741,14 @@ $ httpd.exe -k stop -n "Apache"</code></pre>
 <li><p>如果使用了虚拟主机，则默认必须全部使用虚拟主机，即之前的默认网站也必须通过虚拟主机方式配置，否则访问不到。参考：<a href="http://skypegnu1.blog.51cto.com/8991766/1532454" target="_blank" rel="noopener">http://skypegnu1.blog.51cto.com/8991766/1532454</a></p>
 </li>
 <li><p>如果虚拟主机的端口使用的不是 <code>80</code>，则需要在主配置文件中添加一个对这个端口的监听：</p>
-<p><img src="media/1506001971125.png" alt="1506001971125"></p>
+<p><img src="/images/1506001971125.png" alt="1506001971125"></p>
 </li>
 </ul>
 </blockquote>
 <h4 id="静态网站与动态网站"><a href="#静态网站与动态网站" class="headerlink" title="静态网站与动态网站"></a>静态网站与动态网站</h4><p>至此，我们已经可以把这些静态页面放到服务器上了，客户端也可以通过域名请求这个网站，但是对于我们来说，Apache 能够完成的事情过于简单，无外乎就是找到你请求对应的文件 → 读取文件 → 将文件内容响应给客户端浏览器（<strong>文件原封不动的给你</strong>）。无法满足让网页内容动起来（动态变化）的需求。</p>
 <p>于是乎，就有人提出了服务端动态网页的概念，这种实现这种概念的技术有很多种：JSP、ASP.NET、PHP、Node 等等。</p>
 <p>这些技术的原理就是：不再将 HTML 固定写死，每次用户请求时，动态执行一段代码，临时生成一个用户想要的 HTML 页面。</p>
-<p><img src="media/apache-process.png" alt="apache-process"></p>
+<p><img src="/images/apache-process.png" alt="apache-process"></p>
 <p><strong>动态网站指的也就是每次请求时服务端动态生成 HTML 返回给用户的这种网站。</strong></p>
 <p>这里我们选择 PHP 作为我们了解服务端动态网页开发的技术方案，注意：我们学习的重心不在 PHP，而是了解服务端开发，以及某些其他对前端开发有帮助的东西。</p>
 <h4 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h4><ul>
@@ -3023,7 +3023,7 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 </thead>
 <tbody><tr>
 <td><a href="http://expressjs.com/en/resources/middleware/body-parser.html" target="_blank" rel="noopener">body-parser</a></td>
-<td>Parse HTTP request body. See also: <a href="https://github.com/raynos/body" target="_blank" rel="noopener">body</a>, <a href="https://github.com/visionmedia/co-body" target="_blank" rel="noopener">co-body</a>, and <a href="https://github.com/stream-utils/raw-body" target="_blank" rel="noopener">raw-body</a>.</td>
+<td>Parse HTTP request body. See also: <a href="https://github.com/raynos/body" target="_blank" rel="noopener">body</a>, <a href="https://github.com/vision/images/co-body" target="_blank" rel="noopener">co-body</a>, and <a href="https://github.com/stream-utils/raw-body" target="_blank" rel="noopener">raw-body</a>.</td>
 <td>express.bodyParser</td>
 </tr>
 <tr>
