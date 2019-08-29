@@ -5,10 +5,10 @@
     
     <entry>
       <title>APP适配问题</title>
-      <link href="/2019/08/29/app/"/>
-      <url>/2019/08/29/app/</url>
+      <link href="/2019/08/29/app/app/"/>
+      <url>/2019/08/29/app/app/</url>
       
-        <content type="html"><![CDATA[<h2 id="APP适配问题"><a href="#APP适配问题" class="headerlink" title="APP适配问题"></a>APP适配问题</h2><p>用rem处理适配</p><ol><li>设计稿的尺寸需要转化为rem值，分为若干份，没一份的大小就是rem，一般分为20来计算</li><li>把设计图测量出来的尺寸转化为rem值   比如：设计稿中一张图片是200px*200px</li><li>在不同的设备中我们只需要去动态的设置html的font-size=设置宽度/20</li><li>这里动态的改变html中的font-size我们用js写，媒体查询比较麻烦</li></ol><p>、、、</p><script type="text/javascript">       window.onresize=function(){           document.querySelector('html').style.fontSize=window.screen.width/20+'px';       }           onresize();</script><p>、、、<br><strong>这里要放在body的上面</strong></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h2 id="APP适配问题"><a href="#APP适配问题" class="headerlink" title="APP适配问题"></a>APP适配问题</h2><p>用rem处理适配</p><ol><li>设计稿的尺寸需要转化为rem值，分为若干份，没一份的大小就是rem，一般分为20来计算</li><li>把设计图测量出来的尺寸转化为rem值   比如：设计稿中一张图片是200px*200px</li><li>在不同的设备中我们只需要去动态的设置html的font-size=设置宽度/20</li><li>这里动态的改变html中的font-size我们用js写，媒体查询比较麻烦</li></ol><pre><code>&lt;script type="text/javascript"&gt;       window.onresize=function(){           document.querySelector('html').style.fontSize=window.screen.width/20+'px';       }           onresize();&lt;/script&gt;</code></pre><p><strong>这里要放在body的上面</strong></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       
