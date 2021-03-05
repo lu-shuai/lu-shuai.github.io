@@ -4,9 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="vue中Observer问题, 卢先森">
-    <meta name="description" content="vue 中 [ob: Observer]问题​​​​
-– ob: Observer这些数据是vue这个框架对数据设置的监控器，一般都是不可枚举的。首先我们要把这个数据获取原始数据 JSON.stringify([data])   变成字符串">
+    <meta name="keywords" content="Vue中避免滥用this去读取data中数据, 卢先森">
+    <meta name="description" content="Vue中避免滥用this去读取data中数据
+在Vue中，data选项是个好东西，把数据往里一丢，在一个Vue组件中任何一个地方都可以通过this来读取data中数据。但是要避免滥用this去读取data中数据，至于在哪里要避免滥用，如果滥">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>vue中Observer问题 | 卢先森</title>
+    <title>Vue中避免滥用this去读取data中数据 | 卢先森</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        vue中Observer问题
+                        Vue中避免滥用this去读取data中数据
                     </div>
                 </div>
             </div>
@@ -390,8 +390,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/前端/" class="post-category" target="_blank">
-                                前端
+                            <a href="/categories/前端优化/" class="post-category" target="_blank">
+                                前端优化
                             </a>
                         
                     </div>
@@ -402,7 +402,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-28
+                    2021-01-10
                 </div>
 
                 
@@ -418,9 +418,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="vue-中-ob-Observer-问题"><a href="#vue-中-ob-Observer-问题" class="headerlink" title="vue 中 [ob: Observer]问题"></a>vue 中 [<strong>ob</strong>: Observer]问题</h2><p>​​​​<br><img src="/images/vue.png" alt="截图"></p>
-<p>– <strong>ob</strong>: Observer这些数据是vue这个框架对数据设置的监控器，一般都是不可枚举的。<br>首先我们要把这个数据获取原始数据 <strong>JSON.stringify([data])</strong>   变成字符串</p>
-<p>然后在用<strong>JSON.parse()</strong>将数据转换为 JavaScript 对象<br><img src="https://img-blog.csdnimg.cn/20190313104254672.png" alt=""></p>
+                <h2 id="Vue中避免滥用this去读取data中数据"><a href="#Vue中避免滥用this去读取data中数据" class="headerlink" title="Vue中避免滥用this去读取data中数据"></a>Vue中避免滥用this去读取data中数据</h2><blockquote>
+<p>在Vue中，data选项是个好东西，把数据往里一丢，在一个Vue组件中任何一个地方都可以通过this来读取data中数据。但是要避免滥用this去读取data中数据，至于在哪里要避免滥用，如果滥用会导致什么后果</p>
+</blockquote>
+<h3 id="首先来了解下this读取data中数据的过程"><a href="#首先来了解下this读取data中数据的过程" class="headerlink" title="首先来了解下this读取data中数据的过程"></a>首先来了解下this读取data中数据的过程</h3><p>在Vue源码中会把data中数据添加getter函数和setter函数，将其转成响应式的。getter函数代码如下所示</p>
+<pre class=" language-javascript"><code class="language-javascript">  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> key<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      enumerable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span> reactiveGetter <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> value <span class="token operator">=</span> getter <span class="token operator">?</span> getter<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">:</span> val<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Dep<span class="token punctuation">.</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          dep<span class="token punctuation">.</span><span class="token function">depend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>childOb<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            childOb<span class="token punctuation">.</span>dep<span class="token punctuation">.</span><span class="token function">depend</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token function">dependArray</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> value
+      <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>用this读取data中数据时，会触发getter函数，在其中通过<strong>var value = getter ? getter.call(obj) : val;</strong> 获取到值后执行 return value，实现读取数据的目的。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -597,9 +615,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《vue中Observer问题》
+                    《Vue中避免滥用this去读取data中数据》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/01/28/vue/vue/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/10/vue/vueyouhua/" property="cc:attributionName"
                rel="cc:attributionURL">
                 卢先森
             </a> 采用
@@ -639,9 +657,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/01/10/vue/vueyouhua/">
                     <div class="card-image">
@@ -660,9 +679,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -675,6 +694,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -693,26 +713,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/02/vue/vuelearning/">
+                <a href="/2020/01/28/vue/vue/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="vue文档资料">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="vue中Observer问题">
                         
-                        <span class="card-title">vue文档资料</span>
+                        <span class="card-title">vue中Observer问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Vue.js - Day1课程介绍前5天： 都在学习Vue基本的语法和概念；打包工具 Webpack , Gulp后5天： 以项目驱动教学；
-什么是Vue.js
-Vue.js 是目前最火的一个前端框架，React是最流行的一个前端框架（Re
+                            vue 中 [ob: Observer]问题​​​​
+– ob: Observer这些数据是vue这个框架对数据设置的监控器，一般都是不可枚举的。首先我们要把这个数据获取原始数据 JSON.stringify([data])   变成字符串
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-02
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-28
                             </span>
                         <span class="publish-author">
                             
