@@ -439,6 +439,38 @@
         <span class="token keyword">return</span> value
       <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
 <p>用this读取data中数据时，会触发getter函数，在其中通过<strong>var value = getter ? getter.call(obj) : val;</strong> 获取到值后执行 return value，实现读取数据的目的。</p>
+<h2 id="如何避免滥用this去读取data中数据"><a href="#如何避免滥用this去读取data中数据" class="headerlink" title="如何避免滥用this去读取data中数据"></a>如何避免滥用this去读取data中数据</h2><p>综上所述在计算属性和template模板中滥用this去读取data中数据会导致多次重复地收集依赖，从而产生性能问题，那要怎么避免这种情况。</p>
+<p>计算属性中如何避免</p>
+<p>用ES6对象解构赋值来避免，计算属性的值是一个函数，其参数是Vue的实例化this对象，在上述计算属性中滥用this的例子中可以这样优化<br>优化前</p>
+<pre class=" language-javascript"><code class="language-javascript">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
+    d<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>num <span class="token operator">></span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                result <span class="token operator">+</span><span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>num <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>c<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                result <span class="token operator">+</span><span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>num <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>e <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>f<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>优化后</p>
+<pre class=" language-javascript"><code class="language-javascript">computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
+    computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">d</span><span class="token punctuation">(</span><span class="token punctuation">{</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>num <span class="token operator">></span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        result <span class="token operator">+</span><span class="token operator">=</span> a<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>num <span class="token operator">+</span> b <span class="token operator">+</span> c<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        result <span class="token operator">+</span><span class="token operator">=</span> a<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>num <span class="token operator">+</span> e <span class="token operator">+</span> f<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
