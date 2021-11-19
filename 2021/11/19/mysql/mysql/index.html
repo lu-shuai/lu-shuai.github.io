@@ -534,7 +534,7 @@
             4 is null
                * select * from 表名 where 字段名 is null
             5 and
-               * select * from 表名 where  判断语句（age&gt;=20）and 判断语句（age&lt;=30）
+               * select * from 表名 where  判断语句（age>=20）and 判断语句（age<=30）
             6 or （或）
                * select * from 表名 where 判断语句（age=20）or 判断语句（age=30）
             7 not
@@ -603,7 +603,7 @@
     2. 数据库设计的范式</code></pre><h3 id="1-6数据库备份和还原"><a href="#1-6数据库备份和还原" class="headerlink" title="1.6数据库备份和还原"></a>1.6数据库备份和还原</h3><p>1.命令行</p>
 <ul>
 <li><p>备份：mysqldump -u用户名 -p密码 数据库名称  &gt; 保存路径</p>
-<pre class=" language-linux"><code class="language-linux">mysqldump -uroot -proot db1 &gt; d://b.sql</code></pre>
+<pre class=" language-linux"><code class="language-linux">mysqldump -uroot -proot db1 > d://b.sql</code></pre>
 </li>
 <li><p>还原：</p>
 <ul>
@@ -677,11 +677,11 @@
 <ul>
 <li><p>子查询结果是单行单列的</p>
 <pre class=" language-mysql"><code class="language-mysql">1.语法：
-    select 字段名 from 表名1 where 表名1.字段名 条件(= &gt; &lt;) (select 聚合函数 from 表名1)
+    select 字段名 from 表名1 where 表名1.字段名 条件(= > <) (select 聚合函数 from 表名1)
 2. 案例： 
 * SELECT *
   FROM blogs 
-  where bloag.age &lt; (select avg(age) from blogs)</code></pre>
+  where bloag.age < (select avg(age) from blogs)</code></pre>
 </li>
 <li><p>子查询是多行单列的</p>
 <pre class=" language-mysql"><code class="language-mysql">1.语法：子查询可以作为条件，使用运算符in来判断
