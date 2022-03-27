@@ -4,12 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="mysql语法笔记, 卢先森">
-    <meta name="description" content="数据库操作1.1数据库操作1. 操作数据库：CRUD
-    1.C(create):创建
-       * 创建数据库名称
-          * create database 数据库名称
-       * 创建数据库，判断不存在，在创">
+    <meta name="keywords" content="hexo教程, 卢先森">
+    <meta name="description" content="前言Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
+这里我把个人博客托管在 GitHub Pages 上。GitHub Pages 是一种静">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>mysql语法笔记 | 卢先森</title>
+    <title>hexo教程 | 卢先森</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -264,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        mysql语法笔记
+                        hexo教程
                     </div>
                 </div>
             </div>
@@ -381,8 +378,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/mysql/" target="_blank">
-                                <span class="chip bg-color">mysql</span>
+                            <a href="/tags/hexo/" target="_blank">
+                                <span class="chip bg-color">hexo</span>
                             </a>
                         
                     </div>
@@ -393,8 +390,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                数据库
+                            <a href="/categories/博客/" class="post-category" target="_blank">
+                                博客
                             </a>
                         
                     </div>
@@ -405,7 +402,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-19
+                    2022-03-20
                 </div>
 
                 
@@ -421,365 +418,85 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h1><h3 id="1-1数据库操作"><a href="#1-1数据库操作" class="headerlink" title="1.1数据库操作"></a>1.1数据库操作</h3><pre class=" language-mysql"><code class="language-mysql">1. 操作数据库：CRUD
-    1.C(create):创建
-       * 创建数据库名称
-          * create database 数据库名称
-       * 创建数据库，判断不存在，在创建：
-          * create database if not exists 数据库名称；
-    2.R(retrieve):查询
-       * 查询所有数据库的名称；
-          * show databases;
-       * 查询某个数据库的字符集
-          * show create database 数据库名称
-    3.U(update):修改
-          * 修改数据库的字符集
-             * alter database 数据库名称 character set 字符集名称（utf8/gbk）
-    4.D(delete)删除
-          *删除数据库
-              * drop database 数据库名称
-    5.使用数据库
-           * 查询当前正在使用的数据库名称
-              * select database();
-           * 使用数据库
-              * use 数据库名称</code></pre>
-<h3 id="1-2-数据表操作"><a href="#1-2-数据表操作" class="headerlink" title="1.2 数据表操作"></a>1.2 数据表操作</h3><pre class=" language-mysql"><code class="language-mysql">2. 操作数据表
-     1.C(create):创建 
-           *创建表
-               * create table 表名(
-                      列名1 数据类型1,
-                      列名2 数据类型2，
-                      。。。
-                  )
-               create table db1(name varchar(32),age int)
-               * 数据类型 int,double...
-           * 复制表
-               * create table 自己起表名 like 被复制的表名；
-     2.R(retrieve):查询
-         * 查询某个数据库中所有的表名称
-               * show tables；
-         * 查询表结构
-               *desc 表名；
-     3.U(update):修改
-         1.修改表名
-               * alter table 表名 rename to 新的表名；
-         2.添加一列
-               * alter table 表名 add 列名 数据类型；
-         3.修改列名称 类型
-               * alter table 表名 change 列名 新的列名 新数据类型；
-               * alter table 表名 modify 列名  新数据类型；
-         4。删除列名
-               * alter table 表名 drop 列名；
-     4.D(delete)删除
-          * drop table 表名;</code></pre>
-<h3 id="1-3-表中数据操作"><a href="#1-3-表中数据操作" class="headerlink" title="1.3 表中数据操作"></a>1.3 表中数据操作</h3><pre class=" language-mysql"><code class="language-mysql">3. 表中数据操作
-    1.添加数据
-       * insert into 表名(列表1，列名2。。。) values(值1，值2。。。)
-    2.删除数据
-       * delete form 表名 [where 条件]
-            * DELETE FROM db1 WHERE age=13;
-       *注意
-           1.如果不加条件，则删除表中所有记录；
-           2.如果要删除所有记录
-              * delete form 表名； ---不推荐使用.有多少条就会执行多少次删除操作
-              * truncate table 表名  --推荐使用。先删除表，然后在创建一张一样的表
-     3.修改数据
-        * update 表名 set 列名1 = 值1，列名2 = 值2。。。 where 条件
-
- 4.查询表中的记录
-     1.语法：
-        select
-            字段列表
-        from
-           表名列表
-        group by
-            分组字段
-        having
-            分组之后的条件
-        order by
-            排序
-        limit
-            分页限定
-     2.基础查询   字段名1 == 列表名
-       1.多个字段查询
-          * select 字段名1，字段名2。。。 from 表名；
-       2.去除重复
-          * 语法
-             * select distinct 字段名1，字段名2。。。 from 表名； 
-       3.计算列
-          *语法
-             * select 字段名1，字段名2。。。，字段1 + 字段2 from 表名；
-             * select 字段名1，字段名2。。。，字段1 + ifnull(字段2,0) from 表名；
-                 * ifnull(表达式1，表达式2)
-                      1. 表达式1：哪个字段需要判断是否为null
-                      2. 表达式2：如果该字段为null后的替换值
-       4.起别名
-          * 语法
-            * select 字段名1 as 新的字段名，字段名2。。。，字段1 + ifnull(字段2,0) as 新的字段名 from 表名
-
-     3.条件查询
-         * 语法
-            1 between ... and （在什么范围）
-               * select * from 表名 where 字段名 between 最小区间 and 最大区间
-            2 in(集合)
-               * select * from 表名 where 字段名 in (数值1，数值2，数值3.。。。)
-            3 like（模糊查询）
-                3-1.占位符
-                     1. _:单个任意字符
-                        * select * from 表名 where 字段名 like ‘_检索字’(注释 -- 找出第二个字）
-                        * select * from 表名 where 字段名 like ‘___’   (注释 -- 找出三个字的）
-                     2.%：多个任意字符
-                        * select * from 表名 where 字段名 like ‘检索字%’ -- 查询第一个字
-                        * select * from 表名 where 字段名 like ‘%检索字%’ -- 包含关系
-            4 is null
-               * select * from 表名 where 字段名 is null
-            5 and
-               * select * from 表名 where  判断语句（age&gt;=20）and 判断语句（age&lt;=30）
-            6 or （或）
-               * select * from 表名 where 判断语句（age=20）or 判断语句（age=30）
-            7 not
-               * select * from 表名 where 字段名 is not null
-
-      4.排序查询
-            1. order by 语句                                             
-                * select * from 表名 order by 字段名1 asc，字段名2 desc。。。       
-                 asc ：升序
-                 desc：降序    
-      5. 聚合函数：将一列数据作为一个整体，进行纵向计算
-            1. count：计算个数
-                    1.一般选择非空列：主健
-                    2.count（*）
-                       * select count（id）from 表名                                                   2. max ：最大值
-                  * select max（字段名）from 表名                                           
-            3. min：最小值    
-                  * select min（字段名）from 表名
-            4. sum：和
-                  * select sum（字段名）from 表名                                           
-            5. avg：平均值     
-                  * select avg（字段名）from 表名                                                 6. 分组查询：
-            1. 语法：group by 分组字段：  
-            2. 注意：
-                 1. 分组之后查询的字段： 分组字段，聚合函数
-                 2. where 和 having的区别
-                      1.where 在分组之前进行限定，如果不满足条件，则不参与分组                                             having 在分组之后进行限定，如果不满足结果，则不会查询出来  
-                      2.where 后不可以跟聚合函数，having可以进行聚合函数判断
-               * select 分组字段名 from 表名 group by 分组字段名
-               * select 分组字段名 from 表名 【where 条件】 group by 分组字段名                                * select 分组字段名 from 表名 【where 条件】 group by 分组字段名  having 判断条件        7.分页查询         
-            1.语法：limit 开始的索引，每页查询的条数；
-            2.公式：开始的索引 = （当前的页面-1）* 每页显示的条数
-                 * select * from 表名 limit 开始索引（0），条数（10）                        </code></pre>
-<h3 id="1-4-约束"><a href="#1-4-约束" class="headerlink" title="1.4 约束"></a>1.4 约束</h3><blockquote>
-<p>概念：对表中的数据进行限定，保证数据的正确性、有效性和完整性</p>
-</blockquote>
-<pre class=" language-mysql"><code class="language-mysql">1. 分类：
-    1. 主键约束：primary key
-       1.一张表里面只能有一个字段为主键
-         1.创建主键
-          * create table 表名(字段名1 字段类型 primary key，字段名2 字段类型)  -- 字段名1是主键
-         2. 删除主键
-           * alter table 表名 drop primary key
-    2. 非空约束：not null
-        * create table 表名(字段名1 字段类型，字段名2 字段类型 not null)  -- 字段名2是一个非空约束
-    3. 唯一约束：unique
-       1.创建约束
-        * create table 表名(字段名1 字段类型，字段名2 字段类型 unique) -- 字段名2是唯一约束，不能重复
-       2.删除约束
-         * alter table 表名 drop index 字段名
-    4. 外键约束：foreign key
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<p>这里我把个人博客托管在 GitHub Pages 上。GitHub Pages 是一种静态站点托管服务，每个 GitHub 帐户或组织都可以有一个站点。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><strong>准备工作</strong></h2><p>安装 Hexo 前要先安装：</p>
+<pre class=" language-text"><code class="language-text">Node.js
+Git</code></pre>
+<p>Hexo 原理简要介绍<br>由于 GitHub Pages 存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，那就太繁琐了，毕竟博客的关键是内容，hexo 做的就是将这些 md 文件都放在本地，每次写完文章后框架会批量生成相关页面，然后我们只需要将生成的静态文件提交到 GitHub 即可。</p>
+<p>注意：建议使用 Git Bash 来执行后续的所有命令。</p>
+<h2 id="GitHub-Pages-上搭建博客"><a href="#GitHub-Pages-上搭建博客" class="headerlink" title="GitHub Pages 上搭建博客"></a><strong>GitHub Pages 上搭建博客</strong></h2><h3 id="GitHub-创建仓库"><a href="#GitHub-创建仓库" class="headerlink" title="GitHub 创建仓库"></a><strong>GitHub 创建仓库</strong></h3><p>新建一个名为 用户名.<a href="https://link.zhihu.com/?target=http%3A//github.io" target="_blank" rel="noopener">http://github.io</a> 的仓库，比如说，如果你的 GitHub 用户名是 lu-shuai，那么你就新建 [http:// lu-shuai.github.io](<a href="https://link.zhihu.com/?target=http%3A//" target="_blank" rel="noopener">https://link.zhihu.com/?target=http%3A//</a> lu-shuai.github.io) 的仓库，将来你的网站访问地址就是 [https:// lu-shuai.github.io。](<a href="https://link.zhihu.com/?target=https%3A//" target="_blank" rel="noopener">https://link.zhihu.com/?target=https%3A//</a> lu-shuai.github.io./)</p>
+<p>由此可见，每一个 GitHub 账户最多只能创建一个这样可以直接使用域名访问的仓库。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a><strong>注意</strong></h3><p>仓库名字必须是：<a href="https://link.zhihu.com/?target=http%3A//username.github.io" target="_blank" rel="noopener">http://username.github.io</a>，其中 username 是你的用户名</p>
+<h3 id="Hexo-安装"><a href="#Hexo-安装" class="headerlink" title="Hexo 安装"></a><strong>Hexo 安装</strong></h3><pre class=" language-text"><code class="language-text">npm install -g hexo</code></pre>
+<h3 id="Hexo-初始化"><a href="#Hexo-初始化" class="headerlink" title="Hexo 初始化"></a><strong>Hexo 初始化</strong></h3><p>在想要的路径下新建一个 文件夹（名字可以随便取），比如我的是 E:\work\blog\Mr_lu，这个文件夹内就是你的 Hexo 博客的源文件：</p>
+<pre class=" language-text"><code class="language-text">cd E:\work\blog\Mr_lu
+hexo init</code></pre>
+<p>输入以上命令后，hexo 会自动下载一些文件到这个目录，包括 node_modules，其中比较重要的几个文件的目录结构如下：</p>
+<pre class=" language-text"><code class="language-text">.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes</code></pre>
+<p> 注意：hexo 有 2 个_config.yml 文件，一个是站点根目录下的_config.yml，一个是 theme（主题）下的_config.yml 文件。 </p>
+<h2 id="博客生成、预览"><a href="#博客生成、预览" class="headerlink" title="博客生成、预览"></a><strong>博客生成、预览</strong></h2><pre class=" language-text"><code class="language-text">hexo g # 生成
+hexo s # 启动服务</code></pre>
+<p>执行以上命令之后，hexo 就会在 public 文件夹生成相关 html 文件，这些就是你博客的静态文件，后续需要把这些提交到 GitHub 上。</p>
+<p> hexo s 是开启本地预览服务，打开浏览器访问 <a href="https://link.zhihu.com/?target=http%3A//localhost%3A4000/" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到内容，很多人会碰到浏览器一直在转圈但是就是加载不出来的问题，一般情况下是因为端口占用的缘故。 </p>
+<h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a><strong>修改主题</strong></h2><p>这里以 hexo-theme-yilia 这个主题为例做一下说明。</p>
+<p>首先下载 hexo-theme-yilia 这个主题：</p>
+<pre class=" language-text"><code class="language-text">cd E:\work\blog\Mr_lu
+git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code></pre>
+<p>下载的主题文件都在 theme 目录下。</p>
+<p>然后我们将 Hexo 根目录下的_config.yml 中的 theme: landscape 改为 theme: yilia，然后重新执行 hexo g 来重新生成。</p>
+<p>注意：如果出现一些莫名其妙的问题，可以先执行</p>
+<pre class=" language-text"><code class="language-text">hexo clean</code></pre>
+<p>来清理一下 public 的内容，然后再重新生成。</p>
+<h2 id="部署到-GitHub"><a href="#部署到-GitHub" class="headerlink" title="部署到 GitHub"></a><strong>部署到 GitHub</strong></h2><p>如果你一切都配置好了，接下来就是把博客部署到 GitHub 上：</p>
+<pre class=" language-text"><code class="language-text">hexo d</code></pre>
+<p>注意：</p>
+<p>ssh key 配置好。<br>配置_config.yml 中有关 deploy 的部分（注意缩进）。</p>
+<pre class=" language-text"><code class="language-text">deploy:
+  type: git
+  repository: https://github.com/lu-shuai/lu-shuai.github.io.git # 用https或者ssh均可
+  branch: master
 </code></pre>
-<h3 id="1-5数据库的设计"><a href="#1-5数据库的设计" class="headerlink" title="1.5数据库的设计"></a>1.5数据库的设计</h3><pre><code>    1. 多表之间的关系
-       * 一对一：
-         * 如：人和身份证
-         * 分析：一个人只有一个身份证，一个身份证只能对应一个人
-         * ***实现方式：可以在任意一方添加唯一外键指向另一方的主键***
-       * 一对多（多对一）
-         * 如：部门和员工
-         * 分析：一个部门有多个员工，一个员工只能对应一个部门
-         * ***实现方式：在多的一方建立外键，指向一的一方的主键***
-       * 多对多：
-         * 如：学生和课程
-         * 分析：一个学生可以选择很多们课程，一个课程也可以被很多学生选择
-         * ***实现方式：  多对多关系实现需要借助第三张中间表。中间表至少包含两个字段，这两个字段作为第三张表的外键，分别指向两张表的主键***
-    2. 数据库设计的范式</code></pre><h3 id="1-6数据库备份和还原"><a href="#1-6数据库备份和还原" class="headerlink" title="1.6数据库备份和还原"></a>1.6数据库备份和还原</h3><p>1.命令行</p>
-<ul>
-<li><p>备份：mysqldump -u用户名 -p密码 数据库名称  &gt; 保存路径</p>
-<pre class=" language-linux"><code class="language-linux">mysqldump -uroot -proot db1 &gt; d://b.sql</code></pre>
-</li>
-<li><p>还原：</p>
-<ul>
-<li><p>登录数据库</p>
-<pre><code>mysql -uroot -proot </code></pre></li>
-<li><p>创建数据库</p>
-<pre class=" language-mysql"><code class="language-mysql">create database db1;</code></pre>
-</li>
-<li><p>使用数据库</p>
-<pre class=" language-mysql"><code class="language-mysql">use db1;</code></pre>
-</li>
-<li><p>执行文件</p>
-<pre><code>source d://b.sql</code></pre></li>
-</ul>
-</li>
-</ul>
-<h3 id="1-7-多表查询"><a href="#1-7-多表查询" class="headerlink" title="1.7 多表查询"></a>1.7 多表查询</h3><ul>
-<li><p>多表查询的分类</p>
-<ul>
-<li><p>内连接查询：</p>
-<ul>
-<li><p>隐式内连接：使用where</p>
-<pre class=" language-mysql"><code class="language-mysql">1.语法：
-     select 表名1.字段名1，表名2.字段名1.。。。 from 表名1，表名2 where 表名1.字段名1 【条件】表名2.字段名2
-2. 案例： 
-* SELECT a.title,a.author,b.`name` as uu
-  FROM blogs as a ,blogstype as b 
-  WHERE a.cid=b.id</code></pre>
-</li>
-<li><p>显示内连接</p>
-<pre class=" language-mysql"><code class="language-mysql">1.语法：
-     select 表名1.字段名1，表名2.字段名1.。。。 from 表名1 inner(可以省略不用写) join 表名2 on 条件
-2. 案例： 
-* SELECT a.title,a.author,b.`name` 
-  FROM blogs as a   
-  INNER(可以省略不用写) JOIN blogstype as b 
-  ON a.cid=b.id;</code></pre>
-</li>
-</ul>
-</li>
-<li><p>外连接查询</p>
-<ul>
-<li><p>左外连接：</p>
-<pre class=" language-mysql"><code class="language-mysql">1.语法：
-     select 表名1.字段名1，表名2.字段名1.。。。 from 表名1 left join 表名2 on 条件
-2. 案例： 
-* SELECT a.title,a.author,b.`name` 
-  FROM blogs as a   
-  left JOIN blogstype as b 
-  ON a.cid=b.id;
-3.查询的是左边所有数据以及其交集部分</code></pre>
-</li>
-<li><p>右外连接</p>
-<pre class=" language-mysql"><code class="language-mysql">1.语法：
-     select 表名1.字段名1，表名2.字段名1.。。。 from 表名1 right join 表名2 on 条件
-2. 案例： 
-* SELECT a.title,a.author,b.`name` 
-  FROM blogs as a   
-  left JOIN blogstype as b 
-  ON a.cid=b.id;
-3.查询的是右边所有数据以及其交集部分</code></pre>
-</li>
-</ul>
-</li>
-<li><p>子查询</p>
-<blockquote>
-<p>查询嵌套查询</p>
-</blockquote>
-<ul>
-<li><p>子查询不同情况</p>
-<ul>
-<li><p>子查询结果是单行单列的</p>
-<pre class=" language-mysql"><code class="language-mysql">1.语法：
-    select 字段名 from 表名1 where 表名1.字段名 条件(= &gt; &lt;) (select 聚合函数 from 表名1)
-2. 案例： 
-* SELECT *
-  FROM blogs 
-  where bloag.age &lt; (select avg(age) from blogs)</code></pre>
-</li>
-<li><p>子查询是多行单列的</p>
-<pre class=" language-mysql"><code class="language-mysql">1.语法：子查询可以作为条件，使用运算符in来判断
-    select 字段名 from 表名1 where 表名1.字段名1 in (select 字段名 from 表名2 where 字段名2 in('选择的名称1','选择的名称2'))
-2. 案例： 
-* SELECT *
-  FROM blogs 
-  where age in (select age_id from blogstype where age in (18,30) )</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>  * 子查询是多行多列的
-
-  ~~~mysql
-  2. 案例： 
-  * SELECT *
-    FROM blogs as a ,(select * from blogstype as b where b.age&gt;'18') as c
-    where c.age==a.ageid
-  ~~~</code></pre><h3 id="1-8-事务"><a href="#1-8-事务" class="headerlink" title="1.8 事务"></a>1.8 事务</h3><blockquote>
-<p>如果一个包含多个步骤的业务操作，被事务管理，那么这些操作用么同时成功， 要么同时失败</p>
-</blockquote>
-<ul>
-<li><p>操作</p>
-<ul>
-<li><p>开启事务：start transaction</p>
-</li>
-<li><p>回滚：rollback</p>
-</li>
-<li><p>提交：commit</p>
-<pre class=" language-mysql"><code class="language-mysql">1. 案列
-start transaction  -- 开启事务
-UPDATE test SET price = 500 WHERE id=1;
-出错了。。。。
-UPDATE test SET price = price + 500 WHERE id=2;
-COMMIT;   -- 当没有错误的时候，直接提交
-
-ROLLBACK;  -- 当有错误的时候，回滚到上一步操作</code></pre>
-</li>
-</ul>
-</li>
-<li><p>事务的四大特征</p>
-<ul>
-<li>原子性：是不可分割的最小操作单位，要么同时成功，要么同时失败</li>
-<li>持久性：当事务提交或者回滚后，数据库会持久化的保存数据</li>
-<li>隔离性：多个事务之间相互独立</li>
-<li>一致性：事务操作前后，数据总量不变</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-9-数据库用户管理"><a href="#1-9-数据库用户管理" class="headerlink" title="1.9 数据库用户管理"></a>1.9 数据库用户管理</h3><ul>
-<li><p>管理用户</p>
-<ul>
-<li><p>添加用户</p>
-<pre class=" language-mysql"><code class="language-mysql">create user '用户名'@'主机名' identified by '密码'</code></pre>
-</li>
-<li><p>删除用户</p>
-<pre class=" language-mysql"><code class="language-mysql">drop user '用户名'@'主机名'；</code></pre>
-</li>
-<li><p>修改用户密码</p>
-<pre class=" language-mysql"><code class="language-mysql">update user set password = password('新密码') where user = '用户名'
-
--- 忘记root密码
-1.cmd ===》 net stop mysql  管理员身份运行
--- 启动无验证方式启动mysql服务：
-mysqld --skip-grant-tables
--- 下一步就可以修改密码了，首先要关闭mysqld服务</code></pre>
-</li>
-<li><p>查询用户</p>
-<pre class=" language-mysql"><code class="language-mysql">-- 1.切换到mysql数据库
-use mysql；
--- 2.查询user表
-select * from user；
-* 通配符：% 表示可以在任意主机上登录</code></pre>
-</li>
-</ul>
-</li>
-<li><p>数据库权限管理</p>
-<ul>
-<li><p>查询权限</p>
-<pre class=" language-mysql"><code class="language-mysql">show grants for '用户名'@'主机名'</code></pre>
-</li>
-<li><p>授予权限</p>
-<pre class=" language-mysql"><code class="language-mysql">-- 给某个账号某张表赋予权限 权限列表（select update。。。）
-grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'
--- 给某个账号所有表赋予所有权限
-grant all on *.* to '用户名'@'主机名'</code></pre>
-</li>
-<li><p>撤销权限</p>
-<pre class=" language-mysql"><code class="language-mysql">revoke 权限列表 on 数据库名.表名 from '用户名'@'主机名'</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<p>直接执行 hexo d 的话一般会报如下错误：</p>
+<pre class=" language-text"><code class="language-text">Deployer not found: git
+</code></pre>
+<p>这是因为缺少了一个插件，我们可以通过如下命令安装：</p>
+<pre class=" language-text"><code class="language-text">npm install hexo-deployer-git --save
+</code></pre>
+<p>然后输入 hexo d 就会将本次有改动的代码全部提交。</p>
+<h3 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a><strong>自定义域名</strong></h3><p>策略 1 购买域名+虚拟主机（备案，成本低。但不稳定）<br>策略 2 购买域名+云服务器（成本高，稳定，续费更贵）<br>策略 3 购买域名+购买服务器内网穿透（学习成本高+24 小时不断电，搞深了可能成为资深运维）</p>
+<h2 id="常用的-hexo-命令"><a href="#常用的-hexo-命令" class="headerlink" title="常用的 hexo 命令"></a><strong>常用的 hexo 命令</strong></h2><pre class=" language-text"><code class="language-text">常见命令：
+hexo new "postName"      # 新建文章
+hexo new page "pageName" # 新建页面
+hexo generate            # 生成静态页面至public目录
+hexo server              # 开启预览访问端口（默认端口4000，'ctrl + c'关闭server）
+hexo deploy              # 部署到GitHub
+hexo help                # 查看帮助
+hexo version             # 查看Hexo的版本
+缩写命令：
+hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy
+组合命令：
+hexo s -g   # 生成并本地预览
+hexo d -g   # 生成并上传
+</code></pre>
+<h3 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a><strong>写文章</strong></h3><p>我们可以在 hexo 根目录下执行命令：</p>
+<pre class=" language-text"><code class="language-text">hexo new 'my-first-blog'
+</code></pre>
+<p>hexo 会帮我们在_posts 下生成相关 md 文件，我们只需要打开这个文件就可以开始写博客了，用这个命令的好处是帮我们自动生成了文章创建时间。</p>
+<p>基本的建站步骤就介绍到这里了</p>
+<p>我的博客地址：</p>
+<p>github page</p>
+<p><a href="http://lu-shuai.mttsoft.cn/" target="_blank" rel="noopener">http://lu-shuai.mttsoft.cn/</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -956,9 +673,9 @@ grant all on *.* to '用户名'@'主机名'</code></pre>
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《mysql语法笔记》
+                    《hexo教程》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/11/19/mysql/mysql/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/03/20/hexo/hexo/" property="cc:attributionName"
                rel="cc:attributionURL">
                 卢先森
             </a> 采用
@@ -998,9 +715,10 @@ grant all on *.* to '用户名'@'主机名'</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/03/20/hexo/hexo/">
                     <div class="card-image">
@@ -1019,9 +737,9 @@ grant all on *.* to '用户名'@'主机名'</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-03-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-03-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1034,6 +752,7 @@ grant all on *.* to '用户名'@'主机名'</code></pre>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1052,34 +771,35 @@ grant all on *.* to '用户名'@'主机名'</code></pre>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/19/koa/koa/">
+                <a href="/2021/11/19/mysql/mysql/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="koa学习">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="mysql语法笔记">
                         
-                        <span class="card-title">koa学习</span>
+                        <span class="card-title">mysql语法笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            koa快速搭建项目
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src)
+                            数据库操作1.1数据库操作1. 操作数据库：CRUD
+    1.C(create):创建
+       * 创建数据库名称
+          * create database 数据库名称
+       * 创建数据库，判断不存在，在创
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-19
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-11-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/node/" class="post-category" target="_blank">
-                                    node
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
                                 </a>
                             
                             
@@ -1089,8 +809,8 @@ grant all on *.* to '用户名'@'主机名'</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/koa/" target="_blank">
-                        <span class="chip bg-color">koa</span>
+                    <a href="/tags/mysql/" target="_blank">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                 </div>
